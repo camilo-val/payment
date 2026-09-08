@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: pasarela
+  mongodb:
+    uri: mongodb+srv://camiloval1999:Ccva1007*@cluster0.uwbtkk8.mongodb.net/smartbarber?appName=Cluster0
+  data:
+    redis:
+      url: rediss://red-dadnq5f40ujc73c8utag:b6gnP9PK39Dwk1JDPTjQdrYzpM9y0d9m@virginia-keyvalue.render.com:6379
+      repositories:
+        enabled: false
+server:
+  port: 8081
+
+webclient:
+  service-url: http:localhost:8083
