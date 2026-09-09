@@ -1,4 +1,4 @@
-package com.pasarela.infrastructure.enrtrypoint.websocket;
+package com.pasarela.infrastructure.entrypoint.websocket;
 
 import com.pasarela.application.command.ProcessPaymentCommand;
 import com.pasarela.application.usecase.PaymentUseCase;

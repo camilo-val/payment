@@ -1,4 +1,4 @@
-package com.pasarela.infrastructure.enrtrypoint.webhook.handler;
+package com.pasarela.infrastructure.entrypoint.webhook.handler;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

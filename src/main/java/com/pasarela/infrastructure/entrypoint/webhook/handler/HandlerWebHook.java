@@ -1,7 +1,7 @@
-package com.pasarela.infrastructure.enrtrypoint.webhook.handler;
+package com.pasarela.infrastructure.entrypoint.webhook.handler;
 
 import com.pasarela.application.usecase.UpdatePaymentUC;
-import com.pasarela.infrastructure.enrtrypoint.webhook.dto.UpdatePaymentRqDto;
+import com.pasarela.infrastructure.entrypoint.webhook.dto.UpdatePaymentRqDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;

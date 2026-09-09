@@ -1,4 +1,4 @@
-package com.pasarela.infrastructure.enrtrypoint.webhook.dto;
+package com.pasarela.infrastructure.entrypoint.webhook.dto;
 
 import lombok.Builder;
 

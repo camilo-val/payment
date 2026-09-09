@@ -1,6 +1,6 @@
-package com.pasarela.infrastructure.enrtrypoint.config;
+package com.pasarela.infrastructure.entrypoint.config;
 
-import com.pasarela.infrastructure.enrtrypoint.websocket.PaymentWebSocketHandler;
+import com.pasarela.infrastructure.entrypoint.websocket.PaymentWebSocketHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
