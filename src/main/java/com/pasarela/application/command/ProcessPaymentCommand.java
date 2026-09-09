@@ -1,16 +1,22 @@
 package com.pasarela.application.command;
 
+import com.pasarela.domain.enums.PaymentStatus;
 import lombok.Builder;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.UUID;
 
 @Builder
-public record ProcessPaymentCommand(
-        UUID orderId,
+public record ProcessPaymentCommand (
+        String id,
         UUID transactionId,
         BigDecimal amount,
         String currency,
-        String message
+        PaymentStatus status,
+        String description,
+        UUID orderId,
+        Instant createdAt,
+        Instant updatedAt
 ){
 }

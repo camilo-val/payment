@@ -11,5 +11,6 @@ public interface PaymentPort {
     Mono<Payment> updatePayment(Payment payment);
     Mono<Payment> getPaymentById(UUID id);
     Mono<Payment> getPaymentByOrderId(UUID orderId);
+    Mono<Boolean> existsByOrderId(UUID orderId);
 
 }

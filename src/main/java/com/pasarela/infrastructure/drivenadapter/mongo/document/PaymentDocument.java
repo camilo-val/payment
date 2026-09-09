@@ -3,6 +3,9 @@ package com.pasarela.infrastructure.drivenadapter.mongo.document;
 import com.pasarela.domain.enums.PaymentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.ToString;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
@@ -14,7 +17,8 @@ import java.util.UUID;
 @Getter
 @Document(collection = "payment")
 public class PaymentDocument {
-    private UUID id;
+    @Id
+    private String id;
     private UUID transactionId;
     private BigDecimal amount;
     private String currency;
@@ -23,4 +27,20 @@ public class PaymentDocument {
     private UUID orderId;
     private Instant createdAt;
     private Instant updatedAt;
+
+
+    @Override
+    public String toString() {
+        return "PaymentDocument{" +
+                "id=" + id +
+                ", transactionId=" + transactionId +
+                ", amount=" + amount +
+                ", currency='" + currency + '\'' +
+                ", status=" + status +
+                ", description='" + description + '\'' +
+                ", orderId=" + orderId +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
+    }
 }

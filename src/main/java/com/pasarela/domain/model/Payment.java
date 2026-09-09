@@ -9,7 +9,7 @@ import java.time.Instant;
 import java.util.UUID;
 
 public class Payment {
-    private final UUID id;
+    private final String id;
     private final UUID transactionId;
     private final BigDecimal amount;
     private final String currency;
@@ -19,7 +19,7 @@ public class Payment {
     private final Instant createdAt;
     private final Instant updatedAt;
 
-    private Payment(UUID id, UUID transactionId, BigDecimal amount, String currency, PaymentStatus status,
+    private Payment(String id, UUID transactionId, BigDecimal amount, String currency, PaymentStatus status,
                    String description, UUID orderId, Instant createdAt, Instant updatedAt) {
         this.id = id;
         this.transactionId = transactionId;
@@ -48,7 +48,7 @@ public class Payment {
         return new Payment(this.id,this.transactionId,this.amount,this.currency,status, description,this.orderId,this.createdAt,Instant.now());
     }
 
-    public static Payment rebuild(UUID id, UUID transactionId, BigDecimal amount, String currency, PaymentStatus status,
+    public static Payment rebuild(String id, UUID transactionId, BigDecimal amount, String currency, PaymentStatus status,
                                  String description, UUID orderId, Instant createdAt, Instant updatedAt) {
         if (id == null || transactionId == null || amount == null || status == null || orderId == null || createdAt == null) {
             throw new BusinessExceptions(BusinessTransactionalExceptions.INVALID_DATA_FOR_TRANSACTION);
@@ -71,7 +71,7 @@ public class Payment {
         return text == null || text.isBlank();
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
@@ -105,5 +105,20 @@ public class Payment {
 
     public Instant getUpdatedAt() {
         return updatedAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "id=" + id +
+                ", transactionId=" + transactionId +
+                ", amount=" + amount +
+                ", currency='" + currency + '\'' +
+                ", status=" + status +
+                ", description='" + description + '\'' +
+                ", orderId=" + orderId +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
     }
 }

@@ -1,7 +1,8 @@
 package com.pasarela.infrastructure.enrtrypoint.websocket;
 
+import com.pasarela.application.command.ProcessPaymentCommand;
 import com.pasarela.application.usecase.PaymentUseCase;
-import com.pasarela.domain.model.Payment;
+import com.pasarela.infrastructure.commons.WebSocketConnectionManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -12,7 +13,6 @@ import reactor.core.publisher.Mono;
 import tools.jackson.databind.ObjectMapper;
 
 import java.util.List;
-import java.util.Objects;
 
 @Component
 @RequiredArgsConstructor
@@ -20,6 +20,8 @@ import java.util.Objects;
 public class PaymentWebSocketHandler implements WebSocketHandler {
     private final PaymentUseCase paymentUseCase;
     private final ObjectMapper objectMapper;
+    private final WebSocketConnectionManager connectionManager;
+
     @Override
     public List<String> getSubProtocols() {
         return WebSocketHandler.super.getSubProtocols();
@@ -31,14 +33,19 @@ public class PaymentWebSocketHandler implements WebSocketHandler {
                 .receive()
                 .map(WebSocketMessage::getPayloadAsText)
                 .flatMap(this::deserialize)
+                .flatMap(payment -> {
+                    connectionManager.register(payment.orderId(),session);
+                    return paymentUseCase.processPayment(payment);
+                })
                 .doOnNext(message -> log.info("message: {}", message))
                 .then();
     }
 
-    private Mono<Payment> deserialize(String message) {
+    private Mono<ProcessPaymentCommand> deserialize(String message) {
         try{
-            return Mono.just(objectMapper.readValue(message, Payment.class));
+            return Mono.just(objectMapper.readValue(message, ProcessPaymentCommand.class));
         }catch (Exception e){
+           e.printStackTrace();
             return Mono.error(e);
         }
     }

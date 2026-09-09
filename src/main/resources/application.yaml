@@ -2,10 +2,10 @@ spring:
   application:
     name: pasarela
   mongodb:
-    uri: mongodb+srv://camiloval1999:Ccva1007*@cluster0.uwbtkk8.mongodb.net/smartbarber?appName=Cluster0
+    uri: ${MONGO_URI}
   data:
     redis:
-      url: rediss://red-dadnq5f40ujc73c8utag:b6gnP9PK39Dwk1JDPTjQdrYzpM9y0d9m@virginia-keyvalue.render.com:6379
+      url: ${REDIS_URI}
       repositories:
         enabled: false
 server:

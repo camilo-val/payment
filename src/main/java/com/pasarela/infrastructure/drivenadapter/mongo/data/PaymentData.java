@@ -9,4 +9,5 @@ import java.util.UUID;
 public interface PaymentData extends ReactiveMongoRepository<PaymentDocument, UUID> {
 
     Mono<PaymentDocument> findByOrderId(UUID orderId);
+    Mono<Boolean> existsByOrderId(UUID orderId);
 }
