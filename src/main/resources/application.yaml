@@ -1,6 +1,6 @@
 spring:
   application:
-    name: pasarela
+    name: payment-service
   mongodb:
     uri: ${MONGO_URI}
   data:
@@ -10,6 +10,3 @@ spring:
         enabled: false
 server:
   port: 8081
-
-webclient:
-  service-url: http:localhost:8083
