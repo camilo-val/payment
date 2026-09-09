@@ -27,7 +27,8 @@ public class PaymentWebSocketHandler implements WebSocketHandler {
 
     @Override
     public Mono<Void> handle(WebSocketSession session) {
-        return session.receive()
+        return session
+                .receive()
                 .map(WebSocketMessage::getPayloadAsText)
                 .flatMap(this::deserialize)
                 .doOnNext(message -> log.info("message: {}", message))

@@ -24,8 +24,9 @@ public class PaymentAdapter implements PaymentPort {
     }
 
     @Override
-    public Mono<Payment> cancelPayment(Payment payment) {
-        return null;
+    public Mono<Payment> updatePayment(Payment payment) {
+        return paymentData.save(mapperAdapter.toAdapter(payment))
+                .map(mapperAdapter::toDomain);
     }
 
     @Override

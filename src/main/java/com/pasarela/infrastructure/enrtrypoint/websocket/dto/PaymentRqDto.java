@@ -1,4 +1,4 @@
-package com.pasarela.infrastructure.enrtrypoint.dto;
+package com.pasarela.infrastructure.enrtrypoint.websocket.dto;
 
 import lombok.Builder;
 

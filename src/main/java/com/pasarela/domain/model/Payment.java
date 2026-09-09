@@ -33,12 +33,19 @@ public class Payment {
     }
 
     public static Payment create(UUID transactionId, BigDecimal amount, String currency,
-                                 String description, UUID orderId, Instant createdAt) {
-        if (transactionId == null || amount == null || orderId == null || createdAt == null) {
+                                 String description, UUID orderId) {
+        if (transactionId == null || amount == null || orderId == null ) {
             throw new BusinessExceptions(BusinessTransactionalExceptions.INVALID_DATA_FOR_TRANSACTION);
         }
         validateAttribute(currency,description);
-        return new Payment(null,transactionId,amount,currency,PaymentStatus.PENDING,description,orderId,createdAt,null);
+        return new Payment(null,transactionId,amount,currency,PaymentStatus.PENDING,description,orderId,Instant.now(),null);
+    }
+
+    public Payment updateStatus(PaymentStatus status, String description){
+        if (status == PaymentStatus.PENDING ) {
+            throw new BusinessExceptions(BusinessTransactionalExceptions.INVALID_STATUS);
+        }
+        return new Payment(this.id,this.transactionId,this.amount,this.currency,status, description,this.orderId,this.createdAt,Instant.now());
     }
 
     public static Payment rebuild(UUID id, UUID transactionId, BigDecimal amount, String currency, PaymentStatus status,

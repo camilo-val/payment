@@ -1,7 +1,7 @@
 package com.pasarela.infrastructure.enrtrypoint;
 
 import com.pasarela.application.command.PaymentCommand;
-import com.pasarela.infrastructure.enrtrypoint.dto.PaymentRqDto;
+import com.pasarela.infrastructure.enrtrypoint.websocket.dto.PaymentRqDto;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
